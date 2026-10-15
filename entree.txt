@@ -5,4 +5,4 @@ Comme l'a dit Jean : ' Je suis la personne la plus intelligente du monde ' , qu'
 
 
 Les tests de ponctuation sont ... vraiment geniaux , n'est-ce pas ? 
-Il y avait un incroyable dragon (low) dans la grotte .
+Il y avait un incroyable dragon dans la grotte .
