@@ -7,13 +7,12 @@ import (
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: go run . entree sortie")
+		fmt.Println("Usage: go run . entree.txt sortie.txt")
 		return
 	}
 
 	inputFile := os.Args[1]
 	outputFile := os.Args[2]
-
 
 	content, err := os.ReadFile(inputFile)
 	if err != nil {
@@ -21,9 +20,7 @@ func main() {
 		return
 	}
 
-
 	processedText := Process(string(content))
-
 
 	err = os.WriteFile(outputFile, []byte(processedText), 0644)
 	if err != nil {
@@ -33,3 +30,5 @@ func main() {
 
 	fmt.Println("text modifier")
 }
+
+//test
