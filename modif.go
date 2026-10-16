@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"strconv"
 	"strings"
 )
 
@@ -24,22 +23,22 @@ func Process(text string) string {
 		}
 
 		for i := 0; i < len(words); i++ {
-			if words[i] == "(hex)" && i > 0 {
-				val, err := strconv.ParseInt(words[i-1], 16, 64)
-				if err == nil {
-					words[i-1] = strconv.FormatInt(val, 10)
-					words = append(words[:i], words[i+1:]...)
-					i--
-				}
+			if words[i] == "(up)" && i > 0 {
+				words[i-1] = strings.ToUpper(words[i-1])
+				words = append(words[:i], words[i+1:]...)
+				i--
 				continue
 			}
-			if words[i] == "(bin)" && i > 0 {
-				val, err := strconv.ParseInt(words[i-1], 2, 64)
-				if err == nil {
-					words[i-1] = strconv.FormatInt(val, 10)
-					words = append(words[:i], words[i+1:]...)
-					i--
-				}
+			if words[i] == "(low)" && i > 0 {
+				words[i-1] = strings.ToLower(words[i-1])
+				words = append(words[:i], words[i+1:]...)
+				i--
+				continue
+			}
+			if words[i] == "(cap)" && i > 0 {
+				words[i-1] = capitalize(words[i-1])
+				words = append(words[:i], words[i+1:]...)
+				i--
 				continue
 			}
 		}
@@ -48,4 +47,13 @@ func Process(text string) string {
 	}
 
 	return strings.Join(resultLines, "\n")
+}
+
+func capitalize(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+	runes := []rune(s)
+	runes[0] = []rune(strings.ToUpper(string(runes[0])))[0]
+	return string(runes)
 }
