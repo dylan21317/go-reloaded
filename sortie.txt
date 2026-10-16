@@ -1,8 +1,8 @@
 C'est un excellent projet en Go. Il faut simplement ajouter 30 fichiers et 2 dossiers pour voir le resultat.
 
 Il faisait un magnifique temps (up, 2)!
-Comme l'a dit Jean: ' Je suis la personne la plus intelligente du monde ', qu'en penses-tu. . . de tout cela?
+Comme l'a dit Jean:'Je suis la personne la plus intelligente du monde', qu'en penses-tu... de tout cela?
 
 
-Les tests de ponctuation sont. . . vraiment geniaux, n'est-ce pas?
+Les tests de ponctuation sont... vraiment geniaux, n'est-ce pas?
 Il y avait un incroyable dragon dans la grotte.

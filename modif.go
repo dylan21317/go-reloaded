@@ -134,6 +134,43 @@ func formatPunctuation(text string) string {
 		}
 	}
 
+	text = strings.ReplaceAll(text, ". . .", "...")
+	text = strings.ReplaceAll(text, "! ?", "!?")
+
+	inQuote := false
+	var sb strings.Builder
+	runes := []rune(text)
+	for i := 0; i < len(runes); i++ {
+		if runes[i] == '\'' {
+			if !inQuote {
+				for sb.Len() > 0 && sb.String()[sb.Len()-1] == ' ' {
+					s := sb.String()
+					sb.Reset()
+					sb.WriteString(s[:len(s)-1])
+				}
+				sb.WriteRune('\'')
+				inQuote = true
+				for i+1 < len(runes) && runes[i+1] == ' ' {
+					i++
+				}
+			} else {
+				for sb.Len() > 0 && sb.String()[sb.Len()-1] == ' ' {
+					s := sb.String()
+					sb.Reset()
+					sb.WriteString(s[:len(s)-1])
+				}
+				sb.WriteRune('\'')
+				inQuote = false
+				for i+1 < len(runes) && runes[i+1] == ' ' {
+					i++
+				}
+			}
+		} else {
+			sb.WriteRune(runes[i])
+		}
+	}
+	text = sb.String()
+
 	fields := strings.Fields(text)
 	return strings.Join(fields, " ")
 }
