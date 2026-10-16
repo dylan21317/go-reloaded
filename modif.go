@@ -102,7 +102,9 @@ func Process(text string) string {
 			}
 		}
 
-		resultLines = append(resultLines, strings.Join(words, " "))
+		processedLine := strings.Join(words, " ")
+		processedLine = formatPunctuation(processedLine)
+		resultLines = append(resultLines, processedLine)
 	}
 
 	return strings.Join(resultLines, "\n")
@@ -115,4 +117,23 @@ func capitalize(s string) string {
 	runes := []rune(s)
 	runes[0] = []rune(strings.ToUpper(string(runes[0])))[0]
 	return string(runes)
+}
+
+func formatPunctuation(text string) string {
+	puncs := []string{",", ".", "!", "?", ":", ";"}
+	for _, p := range puncs {
+		for strings.Contains(text, " "+p) {
+			text = strings.ReplaceAll(text, " "+p, p)
+		}
+	}
+
+	for _, p := range puncs {
+		text = strings.ReplaceAll(text, p, p+" ")
+		for strings.Contains(text, p+"  ") {
+			text = strings.ReplaceAll(text, p+"  ", p+" ")
+		}
+	}
+
+	fields := strings.Fields(text)
+	return strings.Join(fields, " ")
 }
